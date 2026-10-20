@@ -4,7 +4,7 @@
 
 - Upstream suite spec: `CivicSuite/civicsuite/docs/CivicSuiteUnifiedSpec.md`, especially the CivicComms catalog entry and suite-wide non-negotiables.
 - CivicComms supports source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
-- Apache 2.0 for code, CC BY 4.0 for documentation.
+- AGPL-3.0-only for code (with the TownLight Public Institution Exception for qualifying deployments), CC BY 4.0 for documentation.
 - Every change must keep docs, tests, browser QA evidence, and version surfaces in sync.
 
 ## Hard Boundaries

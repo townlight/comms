@@ -37,6 +37,6 @@ h1{font:700 clamp(2.35rem,7vw,5.4rem)/.95 Georgia,serif;margin:.1em 0}.lede{font
     <article class="card"><h2>Dependency</h2><p>Pinned to <code>civiccore==0.3.0</code>. CivicCore remains dependency-only; it never imports from CivicComms.</p></article>
   </section>
 </main>
-<footer><p>Apache 2.0 code. CC BY 4.0 docs. Run locally by the city.</p></footer>
+<footer><p>AGPL-3.0 code. CC BY 4.0 docs. Run locally by the city.</p></footer>
 </body>
 </html>"""
