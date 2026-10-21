@@ -81,7 +81,7 @@ def test_get_source_review_without_persistence_returns_actionable_503(monkeypatc
 
     assert response.status_code == 503
     detail = response.json()["detail"]
-    assert detail["message"] == "CivicComms draft persistence is not configured."
+    assert detail["message"] == "Townlight Communications draft persistence is not configured."
     assert "Set CIVICCOMMS_DRAFT_DB_URL" in detail["fix"]
 
 

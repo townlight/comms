@@ -1,4 +1,6 @@
-# CivicComms Milestones
+<a id="civiccomms-milestones"></a>
+
+# Townlight Communications Milestones
 
 ## Milestone 0-7: v0.1.0 Foundation
 
@@ -12,4 +14,4 @@ Acceptance criteria:
 
 ## Post-v0.1.0
 
-Source connectors, approval queues, CivicAccess review handoff, and live LLM drafting remain future work.
+Source connectors, approval queues, Townlight Access review handoff, and live LLM drafting remain future work.

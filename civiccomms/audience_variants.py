@@ -1,4 +1,4 @@
-"""Audience variant draft helper for CivicComms."""
+"""Audience variant draft helper for Townlight Communications."""
 
 from dataclasses import dataclass
 
@@ -24,7 +24,7 @@ def draft_audience_variant(
         review_notes=[
             "Verify this version preserves the source facts.",
             "Confirm tone is neutral, factual, and non-advocacy.",
-            "Send multilingual or accessibility variants through CivicAccess review.",
+            "Send multilingual or accessibility variants through Townlight Access review.",
         ],
         boundary="Variant draft only; no autonomous posting or translation certification.",
     )

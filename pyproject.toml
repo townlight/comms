@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "civiccomms"
 version = "0.1.1"
-description = "CivicComms runtime foundation for source-backed public explainers, meeting summaries, newsletters, FAQs, and audience variants."
+description = "Townlight Communications runtime foundation for source-backed public explainers, meeting summaries, newsletters, FAQs, and audience variants."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "AGPL-3.0-only" }

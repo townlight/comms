@@ -2,7 +2,7 @@
 
 ## Welcome
 
-CivicComms is the CivicSuite module for source-backed public explainers and communications support. v0.1.0 ships deterministic draft scaffolds and a public sample UI; it does not publish autonomously.
+Townlight Communications is the Townlight module for source-backed public explainers and communications support. v0.1.0 ships deterministic draft scaffolds and a public sample UI; it does not publish autonomously.
 
 ## How should cities review public drafts?
 
@@ -10,4 +10,4 @@ What approval steps should be mandatory before a city publishes a meeting summar
 
 ## What source connectors matter first?
 
-Which sources should CivicComms ingest first: CivicClerk minutes, CivicCode sections, public calendars, prior press releases, or something else?
+Which sources should Townlight Communications ingest first: Townlight Meetings minutes, Townlight Code sections, public calendars, prior press releases, or something else?

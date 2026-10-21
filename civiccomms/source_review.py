@@ -1,4 +1,4 @@
-"""Source validation helpers for CivicComms draft workflows."""
+"""Source validation helpers for Townlight Communications draft workflows."""
 
 from dataclasses import dataclass
 
@@ -25,7 +25,7 @@ def review_sources(*, source_titles: list[str], citations: list[str]) -> SourceR
         ready_for_draft=not missing,
         missing_items=missing,
         boundary=(
-            "CivicComms drafts from named source material only. Staff must review, "
+            "Townlight Communications drafts from named source material only. Staff must review, "
             "approve, and publish through the city's official channels."
         ),
     )

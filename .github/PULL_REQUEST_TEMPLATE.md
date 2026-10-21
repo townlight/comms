@@ -1,6 +1,6 @@
 ## Summary
 
-Describe the CivicComms change in one or two sentences.
+Describe the Townlight Communications change in one or two sentences.
 
 ## Verification
 

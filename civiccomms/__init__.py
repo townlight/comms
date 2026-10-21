@@ -1,3 +1,3 @@
-"""CivicComms runtime foundation package."""
+"""Townlight Communications runtime foundation package."""
 
 __version__ = "0.1.1"

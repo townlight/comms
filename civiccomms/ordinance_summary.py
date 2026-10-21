@@ -1,4 +1,4 @@
-"""Plain-language ordinance summary helper for CivicComms."""
+"""Plain-language ordinance summary helper for Townlight Communications."""
 
 from dataclasses import dataclass
 

@@ -1,6 +1,8 @@
-# Contributing to CivicComms
+<a id="contributing-to-civiccomms"></a>
 
-Thank you for helping CivicComms become useful municipal software.
+# Contributing to Townlight Communications
+
+Thank you for helping Townlight Communications become useful municipal software.
 
 ## Local setup
 
@@ -12,7 +14,7 @@ bash scripts/verify-release.sh
 
 ## Boundaries
 
-- CivicComms gives source-backed communication draft support, not autonomous publication, campaign content, legal advice, certified translation, or official social media posting.
+- Townlight Communications gives source-backed communication draft support, not autonomous publication, campaign content, legal advice, certified translation, or official social media posting.
 - Do not present generated summaries, explainers, newsletters, FAQs, or audience variants as publish-ready without staff review and citation verification.
 - Do not add live LLM, social-media, publishing-system, or communications-system integrations without updating docs, tests, browser QA evidence, and the release gate.
 
