@@ -1,4 +1,4 @@
-"""FAQ draft helper for CivicComms."""
+"""FAQ draft helper for Townlight Communications."""
 
 from dataclasses import dataclass
 

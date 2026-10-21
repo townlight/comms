@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest a CivicComms capability
+about: Suggest a Townlight Communications capability
 title: "[Feature]: "
 labels: enhancement
 assignees: ""

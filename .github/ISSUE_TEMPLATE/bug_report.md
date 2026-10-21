@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a CivicComms defect
+about: Report a Townlight Communications defect
 title: "[Bug]: "
 labels: bug
 assignees: ""
@@ -8,12 +8,14 @@ assignees: ""
 
 ## What happened?
 
-## What should CivicComms have done instead?
+<a id="what-should-civiccomms-have-done-instead"></a>
+
+## What should Townlight Communications have done instead?
 
 ## Steps to reproduce
 
 ## Environment
 
-- CivicComms version:
+- Townlight Communications version:
 - Python version:
 - Operating system:

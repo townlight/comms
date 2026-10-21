@@ -1,4 +1,6 @@
-# CivicComms Implementation Plan
+<a id="civiccomms-implementation-plan"></a>
+
+# Townlight Communications Implementation Plan
 
 ## v0.1.0 Foundation
 
@@ -10,7 +12,7 @@
 
 ## Future Work
 
-- Source connector imports from CivicClerk, CivicCode, calendars, and prior communications.
-- CivicAccess handoff for multilingual/accessibility review.
+- Source connector imports from Townlight Meetings, Townlight Code, calendars, and prior communications.
+- Townlight Access handoff for multilingual/accessibility review.
 - Approval queues and publication audit trail.
 - Live LLM drafting only after citation and human-approval gates exist.

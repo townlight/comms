@@ -1,4 +1,4 @@
-"""FastAPI runtime foundation for CivicComms."""
+"""FastAPI runtime foundation for Townlight Communications."""
 
 import os
 
@@ -23,9 +23,9 @@ from civiccomms.source_review import review_sources
 
 
 app = FastAPI(
-    title="CivicComms",
+    title='Townlight Communications',
     version=__version__,
-    description="Source-backed public explainers, meeting summaries, newsletters, FAQs, and audience-variant draft support for CivicSuite.",
+    description='Source-backed public explainers, meeting summaries, newsletters, FAQs, and audience-variant draft support for Townlight.',
 )
 
 _draft_repository: CommunicationsDraftRepository | None = None
@@ -81,14 +81,14 @@ def root() -> dict[str, str]:
         "version": __version__,
         "status": "public communications foundation plus draft persistence",
         "message": (
-            "CivicComms package, API foundation, source review, meeting summary drafts, "
+            "Townlight Communications package, API foundation, source review, meeting summary drafts, "
             "ordinance explainers, newsletter outlines, FAQ prompts, audience variants, optional "
             "database-backed source review and meeting summary draft records, and public UI foundation "
             "are online; autonomous publication, campaign content, legal advice, certified translation, "
             "live LLM calls, social media posting, and communications system-of-record integrations are "
             "not implemented yet."
         ),
-        "next_step": "Post-v0.1.1 roadmap: source connector imports, CivicAccess review handoff, and approval queues",
+        "next_step": "Post-v0.1.1 roadmap: source connector imports, Townlight Access review handoff, and approval queues",
     }
 
 
@@ -135,7 +135,7 @@ def get_source_review(review_id: str) -> dict[str, object]:
         raise HTTPException(
             status_code=503,
             detail={
-                "message": "CivicComms draft persistence is not configured.",
+                "message": "Townlight Communications draft persistence is not configured.",
                 "fix": "Set CIVICCOMMS_DRAFT_DB_URL to retrieve persisted source review records.",
             },
         )
@@ -179,7 +179,7 @@ def get_meeting_summary(summary_id: str) -> dict[str, object]:
         raise HTTPException(
             status_code=503,
             detail={
-                "message": "CivicComms draft persistence is not configured.",
+                "message": "Townlight Communications draft persistence is not configured.",
                 "fix": "Set CIVICCOMMS_DRAFT_DB_URL to retrieve persisted meeting summary records.",
             },
         )

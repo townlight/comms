@@ -1,10 +1,14 @@
-# CivicComms
+<a id="civiccomms"></a>
 
-CivicComms is the CivicSuite module for source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
+# Townlight Communications
+
+Townlight Communications is the Townlight module for source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
 
 Current state: **v0.1.1 public communications foundation plus draft persistence release**. This repo ships a FastAPI package, health/root endpoints, documentation gates, deterministic source-readiness review, meeting summary draft outlines, optional database-backed source review and meeting summary draft records, ordinance explainer drafts, newsletter scaffolds, FAQ prompts, audience-variant drafts, and accessible public sample UI at `/civiccomms`. It does **not** ship autonomous publication, campaign or advocacy content, legal advice, certified translation, live LLM calls, social media posting, or communications system-of-record integrations.
 
-## What CivicComms Does
+<a id="what-civiccomms-does"></a>
+
+## What Townlight Communications Does
 
 - Check that draft work starts from named source material and citations.
 - Create deterministic meeting summary draft outlines.
@@ -14,7 +18,9 @@ Current state: **v0.1.1 public communications foundation plus draft persistence 
 - Produce audience-specific variants without changing source facts.
 - Demonstrate a public communications-support UI at `/civiccomms`.
 
-## What CivicComms Does Not Do
+<a id="what-civiccomms-does-not-do"></a>
+
+## What Townlight Communications Does Not Do
 
 - It does not publish or post autonomously.
 - It does not produce campaign, advocacy, or partisan content.
@@ -26,7 +32,7 @@ Current state: **v0.1.1 public communications foundation plus draft persistence 
 ## API Surface
 
 - `GET /` returns the shipped/planned boundary.
-- `GET /health` returns package and CivicCore versions.
+- `GET /health` returns package and Townlight Core versions.
 - `GET /civiccomms` returns the accessible public sample UI.
 - `POST /api/v1/civiccomms/source-review` returns source-readiness checks.
 - `GET /api/v1/civiccomms/source-review/{review_id}` retrieves a persisted source review when `CIVICCOMMS_DRAFT_DB_URL` is configured.
@@ -39,11 +45,11 @@ Current state: **v0.1.1 public communications foundation plus draft persistence 
 
 ## Optional Persistence
 
-Set `CIVICCOMMS_DRAFT_DB_URL` to enable local SQLAlchemy-backed source review and meeting summary records. Without that variable, CivicComms remains deterministic and stateless. Retrieval endpoints return actionable `503` responses that name the required configuration.
+Set `CIVICCOMMS_DRAFT_DB_URL` to enable local SQLAlchemy-backed source review and meeting summary records. Without that variable, Townlight Communications remains deterministic and stateless. Retrieval endpoints return actionable `503` responses that name the required configuration.
 
 ## Local Development
 
-CivicComms v0.1.1 is pinned to `civiccore==0.3.0`.
+Townlight Communications v0.1.1 is pinned to `civiccore==0.3.0`.
 
 ```bash
 python -m pip install -e ".[dev]"
