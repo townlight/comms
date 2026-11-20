@@ -1,29 +1,56 @@
+  Parked foundation — outside the released Windows suite. This repository contains exploratory/support code, not a completed Townlight product. It is not installed or supported by Windows 1.8.1.1. Historical examples, package names and dependency pins below describe this foundation and must not be used as current suite installation instructions. Use the released Windows suite, current modules and acceptance limits.
+
 Townlight Communications
-==========
 
 Townlight Communications is the Townlight module for source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
 
-Current state: v0.1.1 public communications foundation plus draft persistence release. This repo ships a FastAPI package, health/root endpoints, documentation gates, deterministic source-readiness review, meeting summary draft outlines, optional database-backed source review and meeting summary draft records, ordinance explainer drafts, newsletter scaffolds, FAQ prompts, audience-variant drafts, and accessible public sample UI at /civiccomms.
+Current state: v0.1.1 public communications foundation plus draft persistence release. This repo ships a FastAPI package, health/root endpoints, documentation gates, deterministic source-readiness review, meeting summary draft outlines, optional database-backed source review and meeting summary draft records, ordinance explainer drafts, newsletter scaffolds, FAQ prompts, audience-variant drafts, and accessible public sample UI at /civiccomms. It does not ship autonomous publication, campaign or advocacy content, legal advice, certified translation, live LLM calls, social media posting, or communications system-of-record integrations.
 
-It does not ship autonomous publication, campaign or advocacy content, legal advice, certified translation, live LLM calls, social media posting, or communications system-of-record integrations.
+What Townlight Communications Does
 
-API:
-- GET /
-- GET /health
-- GET /civiccomms
-- POST /api/v1/civiccomms/source-review
-- GET /api/v1/civiccomms/source-review/{review_id}
-- POST /api/v1/civiccomms/meeting-summary
-- GET /api/v1/civiccomms/meeting-summary/{summary_id}
-- POST /api/v1/civiccomms/ordinance-summary
-- POST /api/v1/civiccomms/newsletter
-- POST /api/v1/civiccomms/faq
-- POST /api/v1/civiccomms/audience-variant
+- Check that draft work starts from named source material and citations.
+- Create deterministic meeting summary draft outlines.
+- Persist source review and meeting summary draft records when CIVICCOMMS_DRAFT_DB_URL is configured.
+- Create plain-language ordinance explainer draft scaffolds.
+- Build newsletter and FAQ draft structures from source items.
+- Produce audience-specific variants without changing source facts.
+- Demonstrate a public communications-support UI at /civiccomms.
 
-Optional persistence: set CIVICCOMMS_DRAFT_DB_URL to enable SQLAlchemy-backed source review and meeting summary draft records. Without it, Townlight Communications remains deterministic and stateless.
+What Townlight Communications Does Not Do
 
-Run:
+- It does not publish or post autonomously.
+- It does not produce campaign, advocacy, or partisan content.
+- It does not provide legal advice.
+- It does not certify translations or accessibility compliance.
+- It does not call live LLMs in v0.1.1.
+- It does not replace a communications system of record.
 
-python -m pip install -e ".[dev]"
-python -m pytest -q
-bash scripts/verify-release.sh
+API Surface
+
+- GET / returns the shipped/planned boundary.
+- GET /health returns package and Townlight Core versions.
+- GET /civiccomms returns the accessible public sample UI.
+- POST /api/v1/civiccomms/source-review returns source-readiness checks.
+- GET /api/v1/civiccomms/source-review/{review_id} retrieves a persisted source review when CIVICCOMMS_DRAFT_DB_URL is configured.
+- POST /api/v1/civiccomms/meeting-summary returns a meeting summary draft outline and a summary_id when persistence is configured.
+- GET /api/v1/civiccomms/meeting-summary/{summary_id} retrieves a persisted meeting summary when CIVICCOMMS_DRAFT_DB_URL is configured.
+- POST /api/v1/civiccomms/ordinance-summary returns a plain-language explainer draft.
+- POST /api/v1/civiccomms/newsletter returns a newsletter draft outline.
+- POST /api/v1/civiccomms/faq returns source-backed FAQ prompts.
+- POST /api/v1/civiccomms/audience-variant returns an audience-specific draft variant.
+
+Optional Persistence
+
+Set CIVICCOMMS_DRAFT_DB_URL to enable local SQLAlchemy-backed source review and meeting summary records. Without that variable, Townlight Communications remains deterministic and stateless. Retrieval endpoints return actionable 503 responses that name the required configuration.
+
+Local Development
+
+Townlight Communications v0.1.1 is pinned to civiccore==0.3.0.
+
+    python -m pip install -e ".[dev]"
+    python -m pytest -q
+    bash scripts/verify-release.sh
+
+License
+
+Code: AGPL-3.0-only, with the TownLight Public Institution Exception for qualifying deployments. See LICENSE and LICENSE-EXCEPTION.md. Documentation is CC BY 4.0.
