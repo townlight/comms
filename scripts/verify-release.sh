@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="0.1.1"
+VERSION="0.2.0"
 
 python_cmd() {
   local candidates=()
-  if [[ -n "${CIVICCOMMS_RELEASE_PYTHON:-}" ]]; then
-    candidates+=("${CIVICCOMMS_RELEASE_PYTHON}")
+  if [[ -n "${TOWNLIGHT_COMMS_RELEASE_PYTHON:-}" ]]; then
+    candidates+=("${TOWNLIGHT_COMMS_RELEASE_PYTHON}")
   fi
-  candidates+=("/mnt/c/Users/scott/AppData/Local/Microsoft/WindowsApps/python.exe")
   candidates+=(python python3 "py -3")
 
   for candidate in "${candidates[@]}"; do
@@ -33,14 +32,15 @@ import tomllib
 root = Path.cwd()
 pyproject = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))
 version = pyproject["project"]["version"]
-init = (root / "civiccomms" / "__init__.py").read_text(encoding="utf-8")
+init = (root / "townlight_comms" / "__init__.py").read_text(encoding="utf-8")
 readme = (root / "README.md").read_text(encoding="utf-8")
 changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
-assert version == "0.1.1", version
-assert '__version__ = "0.1.1"' in init
-assert "v0.1.1" in readme
-assert "## [0.1.1] - 2026-04-28" in changelog
-assert "civiccore==0.3.0" in readme
+assert version == "0.2.0", version
+assert '__version__ = "0.2.0"' in init
+assert "Townlight Communications 0.2.0 development candidate" in readme
+assert "## [Unreleased]" in changelog
+assert "### 0.2.0 candidate" in changelog
+assert "townlight-core 1.3.0.dev2" in readme
 print("PASS: version surfaces synchronized")
 PY
 
@@ -57,15 +57,15 @@ echo "==> Ruff"
 "$PYTHON" -m ruff check .
 
 echo "==> Build artifacts"
-rm -rf dist
-"$PYTHON" -m build
+mkdir -p "dist/${VERSION}"
+"$PYTHON" -m build --outdir "dist/${VERSION}"
 (
-  cd dist
-  sha256sum civiccomms-0.1.1-py3-none-any.whl civiccomms-0.1.1.tar.gz > SHA256SUMS.txt
+  cd "dist/${VERSION}"
+  sha256sum "townlight_comms-${VERSION}-py3-none-any.whl" "townlight_comms-${VERSION}.tar.gz" > SHA256SUMS.txt
 )
-test -f dist/civiccomms-0.1.1-py3-none-any.whl
-test -f dist/civiccomms-0.1.1.tar.gz
-test -s dist/SHA256SUMS.txt
+test -f "dist/${VERSION}/townlight_comms-${VERSION}-py3-none-any.whl"
+test -f "dist/${VERSION}/townlight_comms-${VERSION}.tar.gz"
+test -s "dist/${VERSION}/SHA256SUMS.txt"
 echo "PASS: build artifacts and SHA256SUMS.txt created"
 
 echo "VERIFY-RELEASE: PASSED"

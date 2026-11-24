@@ -4,6 +4,17 @@ All notable changes to CivicComms will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### 0.2.0 candidate
+
+- Added editorial immutable revision approval and correction/withdrawal without reviving stale revisions.
+- Added approved source snapshot and public attachment capture.
+- Added scheduled website and email publication through the host service.
+- Added subscriber confirmation, preference management, and unsubscribe support.
+- Added Records archive storage for published bytes and receipts behind the separate Records permission.
+- Not included in the released Windows 1.9.3.2 suite; installed candidate acceptance is still pending.
+
 ## [0.1.1] - 2026-04-28
 
 ### Added

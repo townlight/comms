@@ -30,12 +30,12 @@ for file in "${required[@]}"; do
 done
 
 echo "==> Current-facing shipped/planned truth check"
-if grep -RInE 'Civic311|civic311|Open311|system-of-record integrations are online|autonomous publication is implemented|campaign content is supported|legal advice is implemented|live LLM calls are online' README.md README.txt USER-MANUAL.md USER-MANUAL.txt docs/index.html CHANGELOG.md; then
-  echo "FAIL: stale or overstated CivicComms copy found" >&2
+if grep -RInE 'system-of-record integrations are online|autonomous publication is implemented|campaign content is supported|legal advice is implemented|live LLM calls are online' README.md README.txt USER-MANUAL.md USER-MANUAL.txt docs/index.html; then
+  echo "FAIL: stale or overstated Townlight Communications copy found" >&2
   exit 1
 fi
 
-for token in "Townlight Communications" civiccomms "v0.1.1" "civiccore==0.3.0"; do
+for token in "Townlight Communications" "candidate" "Windows" "0.2.0" "townlight-comms" "townlight_comms" "Core" "1.3.0.dev2"; do
   if ! grep -RIn "$token" README.md USER-MANUAL.md docs/index.html CHANGELOG.md >/dev/null; then
     echo "FAIL: expected token missing from current-facing docs: $token" >&2
     exit 1

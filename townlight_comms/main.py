@@ -2,25 +2,24 @@
 
 import os
 
-from civiccore import __version__ as CIVICCORE_VERSION
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+from townlight_core import __version__ as TOWNLIGHT_CORE_VERSION
 
-from civiccomms import __version__
-from civiccomms.audience_variants import draft_audience_variant
-from civiccomms.faq import generate_faq
-from civiccomms.meeting_summary import draft_meeting_summary
-from civiccomms.newsletter import draft_newsletter
-from civiccomms.ordinance_summary import draft_ordinance_summary
-from civiccomms.persistence import (
+from townlight_comms import __version__
+from townlight_comms.audience_variants import draft_audience_variant
+from townlight_comms.faq import generate_faq
+from townlight_comms.meeting_summary import draft_meeting_summary
+from townlight_comms.newsletter import draft_newsletter
+from townlight_comms.ordinance_summary import draft_ordinance_summary
+from townlight_comms.persistence import (
     CommunicationsDraftRepository,
     StoredMeetingSummary,
     StoredSourceReview,
 )
-from civiccomms.public_ui import render_public_lookup_page
-from civiccomms.source_review import review_sources
-
+from townlight_comms.public_ui import render_public_lookup_page
+from townlight_comms.source_review import review_sources
 
 app = FastAPI(
     title='Townlight Communications',
@@ -77,18 +76,18 @@ def root() -> dict[str, str]:
     """Return current product state without overstating unshipped behavior."""
 
     return {
-        "name": "CivicComms",
+        "name": "Townlight Communications",
         "version": __version__,
-        "status": "public communications foundation plus draft persistence",
+        "status": "standalone draft-helper prototype",
         "message": (
-            "Townlight Communications package, API foundation, source review, meeting summary drafts, "
-            "ordinance explainers, newsletter outlines, FAQ prompts, audience variants, optional "
-            "database-backed source review and meeting summary draft records, and public UI foundation "
-            "are online; autonomous publication, campaign content, legal advice, certified translation, "
-            "live LLM calls, social media posting, and communications system-of-record integrations are "
-            "not implemented yet."
+            "This standalone FastAPI server is a legacy draft-helper prototype, not a secured production "
+            "workflow server. The canonical Communications workflow is in the authenticated Windows Suite "
+            "desktop runtime at /desktop/v1/communications; installed Windows candidate acceptance remains pending."
         ),
-        "next_step": "Post-v0.1.1 roadmap: source connector imports, Townlight Access review handoff, and approval queues",
+        "next_step": (
+            "Use the authenticated Windows Suite Communications candidate at /desktop/v1/communications; "
+            "the standalone draft helpers are not a production deployment path."
+        ),
     }
 
 
@@ -98,20 +97,20 @@ def health() -> dict[str, str]:
 
     return {
         "status": "ok",
-        "service": "civiccomms",
+        "service": "townlight_comms",
         "version": __version__,
-        "civiccore_version": CIVICCORE_VERSION,
+        "townlight_core_version": TOWNLIGHT_CORE_VERSION,
     }
 
 
-@app.get("/civiccomms", response_class=HTMLResponse)
-def public_civiccomms_page() -> str:
+@app.get("/townlight_comms", response_class=HTMLResponse)
+def public_townlight_comms_page() -> str:
     """Return the public sample communications support UI."""
 
     return render_public_lookup_page()
 
 
-@app.post("/api/v1/civiccomms/source-review")
+@app.post("/api/v1/townlight_comms/source-review")
 def source_review(request: SourceReviewRequest) -> dict[str, object]:
     if _draft_database_url() is not None:
         stored = _get_draft_repository().create_source_review(
@@ -129,14 +128,14 @@ def source_review(request: SourceReviewRequest) -> dict[str, object]:
     return payload
 
 
-@app.get("/api/v1/civiccomms/source-review/{review_id}")
+@app.get("/api/v1/townlight_comms/source-review/{review_id}")
 def get_source_review(review_id: str) -> dict[str, object]:
     if _draft_database_url() is None:
         raise HTTPException(
             status_code=503,
             detail={
                 "message": "Townlight Communications draft persistence is not configured.",
-                "fix": "Set CIVICCOMMS_DRAFT_DB_URL to retrieve persisted source review records.",
+                "fix": "Set TOWNLIGHT_COMMS_DRAFT_DB_URL to retrieve persisted source review records.",
             },
         )
     stored = _get_draft_repository().get_source_review(review_id)
@@ -145,13 +144,13 @@ def get_source_review(review_id: str) -> dict[str, object]:
             status_code=404,
             detail={
                 "message": "Source review record not found.",
-                "fix": "Use a review_id returned by POST /api/v1/civiccomms/source-review.",
+                "fix": "Use a review_id returned by POST /api/v1/townlight_comms/source-review.",
             },
         )
     return _stored_source_review_response(stored)
 
 
-@app.post("/api/v1/civiccomms/meeting-summary")
+@app.post("/api/v1/townlight_comms/meeting-summary")
 def meeting_summary(request: MeetingSummaryRequest) -> dict[str, object]:
     if _draft_database_url() is not None:
         stored = _get_draft_repository().create_meeting_summary(
@@ -173,14 +172,14 @@ def meeting_summary(request: MeetingSummaryRequest) -> dict[str, object]:
     return payload
 
 
-@app.get("/api/v1/civiccomms/meeting-summary/{summary_id}")
+@app.get("/api/v1/townlight_comms/meeting-summary/{summary_id}")
 def get_meeting_summary(summary_id: str) -> dict[str, object]:
     if _draft_database_url() is None:
         raise HTTPException(
             status_code=503,
             detail={
                 "message": "Townlight Communications draft persistence is not configured.",
-                "fix": "Set CIVICCOMMS_DRAFT_DB_URL to retrieve persisted meeting summary records.",
+                "fix": "Set TOWNLIGHT_COMMS_DRAFT_DB_URL to retrieve persisted meeting summary records.",
             },
         )
     stored = _get_draft_repository().get_meeting_summary(summary_id)
@@ -189,13 +188,13 @@ def get_meeting_summary(summary_id: str) -> dict[str, object]:
             status_code=404,
             detail={
                 "message": "Meeting summary record not found.",
-                "fix": "Use a summary_id returned by POST /api/v1/civiccomms/meeting-summary.",
+                "fix": "Use a summary_id returned by POST /api/v1/townlight_comms/meeting-summary.",
             },
         )
     return _stored_meeting_summary_response(stored)
 
 
-@app.post("/api/v1/civiccomms/ordinance-summary")
+@app.post("/api/v1/townlight_comms/ordinance-summary")
 def ordinance_summary(request: OrdinanceSummaryRequest) -> dict[str, object]:
     return draft_ordinance_summary(
         ordinance_id=request.ordinance_id,
@@ -204,7 +203,7 @@ def ordinance_summary(request: OrdinanceSummaryRequest) -> dict[str, object]:
     ).__dict__
 
 
-@app.post("/api/v1/civiccomms/newsletter")
+@app.post("/api/v1/townlight_comms/newsletter")
 def newsletter(request: NewsletterRequest) -> dict[str, object]:
     return draft_newsletter(
         week_of=request.week_of,
@@ -212,7 +211,7 @@ def newsletter(request: NewsletterRequest) -> dict[str, object]:
     ).__dict__
 
 
-@app.post("/api/v1/civiccomms/faq")
+@app.post("/api/v1/townlight_comms/faq")
 def faq(request: FAQRequest) -> dict[str, object]:
     return generate_faq(
         topic=request.topic,
@@ -220,7 +219,7 @@ def faq(request: FAQRequest) -> dict[str, object]:
     ).__dict__
 
 
-@app.post("/api/v1/civiccomms/audience-variant")
+@app.post("/api/v1/townlight_comms/audience-variant")
 def audience_variant(request: AudienceVariantRequest) -> dict[str, object]:
     return draft_audience_variant(
         base_message=request.base_message,
@@ -229,14 +228,14 @@ def audience_variant(request: AudienceVariantRequest) -> dict[str, object]:
 
 
 def _draft_database_url() -> str | None:
-    return os.environ.get("CIVICCOMMS_DRAFT_DB_URL")
+    return os.environ.get("TOWNLIGHT_COMMS_DRAFT_DB_URL")
 
 
 def _get_draft_repository() -> CommunicationsDraftRepository:
     global _draft_db_url, _draft_repository
     db_url = _draft_database_url()
     if db_url is None:
-        raise RuntimeError("CIVICCOMMS_DRAFT_DB_URL is not configured.")
+        raise RuntimeError("TOWNLIGHT_COMMS_DRAFT_DB_URL is not configured.")
     if _draft_repository is None or db_url != _draft_db_url:
         _dispose_draft_repository()
         _draft_db_url = db_url

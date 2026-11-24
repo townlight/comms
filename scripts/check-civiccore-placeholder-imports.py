@@ -1,4 +1,4 @@
-"""Fail if CivicComms imports CivicCore placeholder packages."""
+"""Fail if Townlight Communications imports CivicCore placeholder packages."""
 
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ PLACEHOLDERS = {
     "verification",
 }
 
-SOURCE_ROOT = Path("civiccomms")
-PATTERN = re.compile(r"^\s*(?:from|import)\s+civiccore\.([a-zA-Z_][a-zA-Z0-9_]*)", re.M)
+SOURCE_ROOT = Path("townlight_comms")
+PATTERN = re.compile(r"^\s*(?:from|import)\s+townlight_core\.([a-zA-Z_][a-zA-Z0-9_]*)", re.MULTILINE)
 
 
 def main() -> int:
@@ -34,7 +34,7 @@ def main() -> int:
             package = match.group(1)
             if package in PLACEHOLDERS:
                 failures.append(
-                    f"{path}: civiccore.{package} is a placeholder package in v0.3.0. "
+                    f"{path}: townlight_core.{package} is a placeholder package in v1.3.0.dev2. "
                     "See AGENTS.md section 3.1."
                 )
     if failures:

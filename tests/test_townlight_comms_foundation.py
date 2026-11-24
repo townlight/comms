@@ -1,13 +1,12 @@
 from fastapi.testclient import TestClient
 
-from civiccomms.audience_variants import draft_audience_variant
-from civiccomms.faq import generate_faq
-from civiccomms.main import app
-from civiccomms.meeting_summary import draft_meeting_summary
-from civiccomms.newsletter import draft_newsletter
-from civiccomms.ordinance_summary import draft_ordinance_summary
-from civiccomms.source_review import review_sources
-
+from townlight_comms.audience_variants import draft_audience_variant
+from townlight_comms.faq import generate_faq
+from townlight_comms.main import app
+from townlight_comms.meeting_summary import draft_meeting_summary
+from townlight_comms.newsletter import draft_newsletter
+from townlight_comms.ordinance_summary import draft_ordinance_summary
+from townlight_comms.source_review import review_sources
 
 client = TestClient(app)
 
@@ -76,40 +75,40 @@ def test_audience_variant_preserves_review_boundary() -> None:
     assert "no autonomous posting" in result.boundary
 
 
-def test_civiccomms_support_apis_success_shape() -> None:
+def test_townlight_comms_support_apis_success_shape() -> None:
     assert client.post(
-        "/api/v1/civiccomms/source-review",
+        "/api/v1/townlight_comms/source-review",
         json={"source_titles": ["Council packet"], "citations": ["packet p. 2"]},
     ).json()["ready_for_draft"] is True
     meeting_response = client.post(
-        "/api/v1/civiccomms/meeting-summary",
+        "/api/v1/townlight_comms/meeting-summary",
         json={"meeting_title": "Council", "actions": ["approved item 4"], "citations": ["minutes p. 3"]},
     )
     assert meeting_response.status_code == 200
     assert meeting_response.json()["summary_id"] is None
     assert client.post(
-        "/api/v1/civiccomms/ordinance-summary",
+        "/api/v1/townlight_comms/ordinance-summary",
         json={"ordinance_id": "ORD-1", "topic": "trees", "citations": ["code 12.01"]},
     ).status_code == 200
     assert client.post(
-        "/api/v1/civiccomms/newsletter",
+        "/api/v1/townlight_comms/newsletter",
         json={"week_of": "2026-04-27", "source_items": ["park opening"]},
     ).status_code == 200
     assert client.post(
-        "/api/v1/civiccomms/faq",
+        "/api/v1/townlight_comms/faq",
         json={"topic": "parks", "source_facts": ["new hours"]},
     ).status_code == 200
     assert client.post(
-        "/api/v1/civiccomms/audience-variant",
+        "/api/v1/townlight_comms/audience-variant",
         json={"base_message": "New hours begin Monday.", "audience": "families"},
     ).status_code == 200
 
 
 def test_public_ui_route_is_accessible_and_honest() -> None:
-    response = client.get("/civiccomms")
+    response = client.get("/townlight_comms")
 
     assert response.status_code == 200
-    assert "Townlight Communications v0.1.1" in response.text
+    assert "Townlight Communications v0.2.0" in response.text
     assert "Human approval required" in response.text
     assert "no campaign" in response.text.lower()
     assert "live LLM calls" in response.text

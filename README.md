@@ -1,65 +1,23 @@
-> **Parked foundation — outside the released Windows suite.** This repository contains exploratory/support code, not a completed Townlight product. It is not installed or supported by Windows 1.8.1.1. Historical examples, package names and dependency pins below describe this foundation and must not be used as current suite installation instructions. Use the [released Windows suite, current modules and acceptance limits](https://townlight.github.io/versions.html).
+# Townlight Communications 0.2.0 development candidate
 
-<a id="civiccomms"></a>
+Townlight Communications is the development candidate for the Townlight Windows staff Communications screen. It is not included in the released Windows 1.9.3.2 suite. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
 
-# Townlight Communications
+The canonical application is the Communications workspace in the Townlight Windows staff shell, using existing administrator, city-staff and clerk roles, plus a separate Records permission for archive access. The repository's standalone `main.py` remains a prototype for draft helpers. It is not a secured workflow server, and its commands are not production deployment instructions.
 
-Townlight Communications is the Townlight module for source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
+## Workflow
 
-Current state: **v0.1.1 public communications foundation plus draft persistence release**. This repo ships a FastAPI package, health/root endpoints, documentation gates, deterministic source-readiness review, meeting summary draft outlines, optional database-backed source review and meeting summary draft records, ordinance explainer drafts, newsletter scaffolds, FAQ prompts, audience-variant drafts, and accessible public sample UI at `/civiccomms`. It does **not** ship autonomous publication, campaign or advocacy content, legal advice, certified translation, live LLM calls, social media posting, or communications system-of-record integrations.
+- Draft and save content from selected Meetings, Code, Notice or 311 sources. The Parks adapter remains pending until the Parks phase.
+- Run an Access check, review and approve one exact revision, then schedule website and email publication.
+- Archive the published revision to Records BEFORE editing, correcting, or withdrawing it; Records access requires the separate Records permission.
+- Correct or withdraw published content without reviving stale revisions.
+- Capture approved source snapshots and public attachments. Private source content cannot be published.
 
-<a id="what-civiccomms-does"></a>
+Publication is transactional: approved revision snapshots, website and email tasks, and status are durable in PostgreSQL. A host service claims due work with leases, so the native app need not stay open. The website path uses the existing authenticated portal receiver.
 
-## What Townlight Communications Does
+Website publication uses the host-configured portal credential and origin. Normal operation uses an unattended host service, not an operator's open window. Email uses city settings shared with 311 SMTP. Subscribers must confirm email and can manage preferences or unsubscribe. Queued means pending, not SMTP accepted. Only sent means SMTP accepted the message, not human receipt; failed and uncertain sends are shown separately, and uncertain sends are never retried automatically.
 
-- Check that draft work starts from named source material and citations.
-- Create deterministic meeting summary draft outlines.
-- Persist source review and meeting summary draft records when `CIVICCOMMS_DRAFT_DB_URL` is configured.
-- Create plain-language ordinance explainer draft scaffolds.
-- Build newsletter and FAQ draft structures from source items.
-- Produce audience-specific variants without changing source facts.
-- Demonstrate a public communications-support UI at `/civiccomms`.
+The Records archive stores actual published bytes and receipts and returns a real identifier. It requires the separate Records role permission.
 
-<a id="what-civiccomms-does-not-do"></a>
+Status: source-level checks passed for this development candidate, but installed Windows candidate acceptance is still pending. Do not describe this module as completed or released. The existing download at https://github.com/townlight/townlight/releases/latest explicitly does not include Communications.
 
-## What Townlight Communications Does Not Do
-
-- It does not publish or post autonomously.
-- It does not produce campaign, advocacy, or partisan content.
-- It does not provide legal advice.
-- It does not certify translations or accessibility compliance.
-- It does not call live LLMs in v0.1.1.
-- It does not replace a communications system of record.
-
-## API Surface
-
-- `GET /` returns the shipped/planned boundary.
-- `GET /health` returns package and Townlight Core versions.
-- `GET /civiccomms` returns the accessible public sample UI.
-- `POST /api/v1/civiccomms/source-review` returns source-readiness checks.
-- `GET /api/v1/civiccomms/source-review/{review_id}` retrieves a persisted source review when `CIVICCOMMS_DRAFT_DB_URL` is configured.
-- `POST /api/v1/civiccomms/meeting-summary` returns a meeting summary draft outline and a `summary_id` when persistence is configured.
-- `GET /api/v1/civiccomms/meeting-summary/{summary_id}` retrieves a persisted meeting summary when `CIVICCOMMS_DRAFT_DB_URL` is configured.
-- `POST /api/v1/civiccomms/ordinance-summary` returns a plain-language explainer draft.
-- `POST /api/v1/civiccomms/newsletter` returns a newsletter draft outline.
-- `POST /api/v1/civiccomms/faq` returns source-backed FAQ prompts.
-- `POST /api/v1/civiccomms/audience-variant` returns an audience-specific draft variant.
-
-## Optional Persistence
-
-Set `CIVICCOMMS_DRAFT_DB_URL` to enable local SQLAlchemy-backed source review and meeting summary records. Without that variable, Townlight Communications remains deterministic and stateless. Retrieval endpoints return actionable `503` responses that name the required configuration.
-
-## Local Development
-
-Townlight Communications v0.1.1 is pinned to `civiccore==0.3.0`.
-
-```bash
-python -m pip install -e ".[dev]"
-python -m pytest -q
-bash scripts/verify-release.sh
-```
-
-## License
-
-Code: AGPL-3.0-only, with the TownLight Public Institution Exception for qualifying deployments. See [LICENSE](LICENSE) and [LICENSE-EXCEPTION.md](LICENSE-EXCEPTION.md).
-Documentation is CC BY 4.0.
+License: code AGPL-3.0-only with the TownLight Public Institution Exception; documentation CC BY 4.0.
