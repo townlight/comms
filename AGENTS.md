@@ -2,27 +2,31 @@
 
 # Townlight Communications Agent Board
 
-## Operating Contract
+## Current contract
 
-- Upstream suite spec: `townlight/townlight/docs/CivicSuiteUnifiedSpec.md`, especially the Townlight Communications catalog entry and suite-wide non-negotiables.
-- Townlight Communications supports source-backed public explainers, meeting summaries, ordinance summaries, newsletters, FAQs, and audience-specific draft variants.
-- AGPL-3.0-only for code (with the TownLight Public Institution Exception for qualifying deployments), CC BY 4.0 for documentation.
-- Every change must keep docs, tests, browser QA evidence, and version surfaces in sync.
+- Townlight Communications `0.2.0` is a development candidate. Scope is defined by `COMMUNICATIONS-DESIGN.md`; this file replaces superseded `0.1.1` prototype mandates.
+- Windows only. Hold software tag and software publication until explicitly authorized.
+- Canonical verification is the Windows suite runtime plus the named affected checks. Do not add extra gates.
+- The standalone `main.py` is a prototype, not the production workflow server.
 
-## Hard Boundaries
+## Publication authority
 
-- Townlight Communications never publishes autonomously, creates campaign or advocacy content, provides legal advice, certifies translations, posts to social media, or updates a communications system of record.
-- Townlight Communications v0.1.1 must not call live LLMs or live publishing/social-media/communications systems.
-- Every generated artifact is a draft requiring staff review, citation verification, approval, and publication through official city channels.
-- Townlight Communications depends on Townlight Core; Townlight Core must never depend on Townlight Communications.
-- Townlight Communications may reference Townlight Meetings, Townlight Code, and Townlight Access concepts only through released APIs or deterministic sample data in v0.1.1.
+- Unattended publication is authorized ONLY for the exact staff-approved revision, through the host, to website and email.
+- Do not add social, advertising/campaign, legal-advice, or translation-certification capabilities.
+- No silent fallback: missing, private, stale, mismatched, or unapproved content must remain blocked and visibly reported.
+- Reuse existing administrator, city-staff, and clerk roles and native authentication.
 
-## Verification
+## Source and history boundaries
 
-Run before push or release:
+- Preserve the private/public source boundary. Source eligibility is verified at runtime against the actual module; user-supplied eligibility flags cannot authorize publication.
+- Revisions are immutable with SHA256 provenance. Editing clears approval and correction preserves prior revisions.
+- Records archive must contain the exact published revision, source references, attachments, and receipts, and return a real identifier before any correction.
+- Use explicit migrations and preserve existing affected headless checks.
+- Preserve ordered correction and withdrawal sequences; stale content must not be resurrected.
 
-```bash
-bash scripts/verify-release.sh
-```
+## Architecture and workflow
 
-Browser QA evidence is required for `docs/index.html` and `/civiccomms` whenever visible UI changes.
+- Preserve dependency direction: Townlight Core never depends on Townlight Communications.
+- DeepSeek1017 performs low-risk implementation; Codex coordinates integration and review.
+- Keep documentation, tests, and version surfaces synchronized with approved scope.
+- Code is AGPL-3.0-only with the TownLight Public Institution Exception; documentation is CC BY 4.0.

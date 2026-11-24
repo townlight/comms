@@ -7,9 +7,8 @@ from uuid import uuid4
 import sqlalchemy as sa
 from sqlalchemy import Engine, create_engine
 
-from civiccomms.meeting_summary import draft_meeting_summary
-from civiccomms.source_review import review_sources
-
+from townlight_comms.meeting_summary import draft_meeting_summary
+from townlight_comms.source_review import review_sources
 
 metadata = sa.MetaData()
 
@@ -24,7 +23,7 @@ source_review_records = sa.Table(
     sa.Column("missing_items", sa.JSON(), nullable=False),
     sa.Column("boundary", sa.Text(), nullable=False),
     sa.Column("created_at", sa.DateTime(timezone=True), nullable=False),
-    schema="civiccomms",
+    schema="townlight_comms",
 )
 
 meeting_summary_records = sa.Table(
@@ -40,7 +39,7 @@ meeting_summary_records = sa.Table(
     sa.Column("citations", sa.JSON(), nullable=False),
     sa.Column("boundary", sa.Text(), nullable=False),
     sa.Column("created_at", sa.DateTime(timezone=True), nullable=False),
-    schema="civiccomms",
+    schema="townlight_comms",
 )
 
 
@@ -76,11 +75,11 @@ class CommunicationsDraftRepository:
     def __init__(self, *, db_url: str | None = None, engine: Engine | None = None) -> None:
         base_engine = engine or create_engine(db_url or "sqlite+pysqlite:///:memory:", future=True)
         if base_engine.dialect.name == "sqlite":
-            self.engine = base_engine.execution_options(schema_translate_map={"civiccomms": None})
+            self.engine = base_engine.execution_options(schema_translate_map={"townlight_comms": None})
         else:
             self.engine = base_engine
             with self.engine.begin() as connection:
-                connection.execute(sa.text("CREATE SCHEMA IF NOT EXISTS civiccomms"))
+                connection.execute(sa.text("CREATE SCHEMA IF NOT EXISTS townlight_comms"))
         metadata.create_all(self.engine)
 
     def create_source_review(

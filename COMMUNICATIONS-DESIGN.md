@@ -1,0 +1,19 @@
+# Communications implementation design — approved scope
+
+Owner: Scott. Windows only. Build after311 source integration; installed acceptance in one combined signed candidate. No software tag/publication approval yet.
+
+## Interface and roles
+Reuse staff shell/navigation, native session and existing administrator/city-staff/clerk grants. New Communications workspace: saved draft list/filter, source picker, editor, exact-revision preview, Access review, review/approval, schedule, delivery status, correction/withdrawal and Records archive. Resident portal: approved article list/detail, subscriptions/preferences/unsubscribe. No resident account exposes staff drafts or private source data. Keyboard navigation, labelled controls, errors beside fields, visible queued/delivered/failed states, destructive actions confirmed.
+
+## Durable domain contract
+Use townlight-comms0.2.0 / townlight_comms, current townlight-core1.3.0.dev2. SQLAlchemy schema townlight_comms. Explicit migration; SQLite tests use schema translation, production bootstrap false. Immutable revisions with SHA256 canonical public content and source snapshots. Articles retain current revision/state, approval hash/actor/time, schedule and publication history. Edit clears approval; correction preserves old revision. Optimistic revision and database transactions prevent two-PC lost updates. HTML is not trusted: store/render plain text and escaped paragraphs. Attachments have actual bytes/hash/limits and public-review status.
+
+Source references carry kind,id,revision,title,public URL,digest and public eligibility verified by runtime against actual module. User-supplied eligibility flags cannot authorize publication. Supported kinds meetings/code/notice/311 aggregate/parks; parks connector completed in Parks phase. Missing/private/stale source blocks approval; manual authored source-backed content does not need AI. Access report and translations retain exact source/output and revision provenance; staff approval remains explicit.
+
+Publication task atomically snapshots exact approved revision, channels website/email and due time. Host claims due tasks with leases; native app need not stay open. Website manifest kind article travels through existing PublisherQueue/portal authenticated receiver, actual receipt URL/hash captured. Correction/withdrawal use ordered sequence, cannot resurrect stale content. Email uses existing311 SMTPTransport with separate Comms durable outbox: deterministic message ID, retries only known unsent, uncertain send is visible and not automatically retried. Subscriptions are opt-in, private tokens hashed, preferences/unsubscribe exclude future mail. No social/ad campaign channels.
+
+## Boundaries
+Runtime /desktop/v1/communications under native staff auth; browser commands use fixed native allowlist and shared-host gateway, no arbitrary URL. Portal incoming resident operations use encrypted authenticated inbox/pump patterns; desktop service stays private. Records archive contains actual published revisions/source refs/attachments/receipts and returns real identifier; Data only explicit approved aggregate publication metrics if required by existing plan, no subscriber list. Reuse existing city configuration and encrypted SMTP settings, no new auth provider.
+
+## Meaningful acceptance
+Domain tests prove edit invalidation, stale review, private source rejection, atomic concurrent edits, schedule leases, exact bytes, correction/withdrawal, subscriber privacy and safe retry. HTTP tests trace real receiving contracts and portal receiver, UI tests actual visible controls with explicit native doubles. Final installed Windows candidate proves staff two-PC sourced author/edit/approve/schedule, app closed host publishes to portal and controlled SMTP, correction/withdrawal/history/Records retrieval, restart survival. Source tests are not installed acceptance.
