@@ -30,7 +30,7 @@ metadata = MetaData(schema=SCHEMA)
 
 ARTICLE_STATES = ("draft", "review", "approved", "scheduled", "published", "withdrawn")
 ARTICLE_KINDS = ("meeting_summary", "ordinance_explainer", "announcement", "faq", "newsletter")
-SOURCE_KINDS = ("meetings", "code", "notice", "311", "parks")
+SOURCE_KINDS = ("meetings", "code", "notice", "311", "parks", "library", "elections")
 
 PUBLICATION_ACTIONS = ("publish", "correct", "withdraw")
 PUBLICATION_STATES = ("pending", "claimed", "queued", "published", "failed", "uncertain")

@@ -1,19 +1,19 @@
-# Townlight Communications 0.2.0 User Manual
+# Townlight Communications 0.2.1 User Manual
 
 ## Status and scope
 
-Townlight Communications 0.2.0 is a development candidate for the Townlight Windows staff Communications screen. It is not part of the released Windows 1.9.3.2 suite. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
+Townlight Communications 0.2.1 is a development candidate for the Townlight Windows staff Communications screen. The known-good Windows 1.10.0.1 baseline remains separate; the new Library/Elections source extension is an unreleased Windows 1.11.0.1 candidate, and Communications is not newly installed in every deployment. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2; package pin `townlight-core==1.3.0.dev2` (not `oldciviccore`).
 
 The canonical application is the Communications workspace in the Townlight Windows staff shell with existing roles: local-admin and city-staff have all active profile-module capabilities plus Records; clerk has Meetings, Notice, Access, 311, Communications and Parks workflow access, but not Records, Code or Data; records-staff has Records only; code-staff has Code only. Aggregate Data approval uses local-admin. Records archive handoff and retrieval use the separate Records permission. The standalone `main.py` in this repository remains a prototype for draft helpers; it is not a secured workflow server or production deployment procedure.
 
 ## Staff workflow
 
-1. Create or reopen a draft. Select sources from Meetings, Code, Notice or 311. The Parks adapter stays pending until the Parks phase.
-2. Save the draft and run an Access check. Review and approve one exact revision. Approval applies to that revision only; later edits clear it.
+1. Create or reopen a draft. Select sources from Meetings, Code, Notice, 311 or Parks, plus candidate approved Library/Elections sources. Library/Elections source approval is a prerequisite, not a substitute for Communications approval. For Elections, Communications binds the approved public title, body, citation and version exactly; changing any of those requires a revised Elections approval plus a separate Communications approval. Normal Library editorial flow is unchanged.
+2. Save the draft and run an Access check. Review and approve one exact revision. Approval applies to that revision only; later edits clear it. A revised source requires a ref refresh and a new Communications revision with separate approval; existing published v1 stays available until an approved correction. No new publisher is introduced.
 3. Schedule publication to the website and email for the approved revision.
 4. Publish, then archive the published revision to Records BEFORE editing, correcting, or withdrawing it; Records producer archive handoff requires both the module and Records access, so use city-staff or local-admin; Records retrieval can also use records-staff. Corrections preserve prior revisions, and withdrawal prevents stale content from being restored.
 
-Captured approved source snapshots, public URLs, digests and revision provenance remain with the article. Public attachments require review. Private source content cannot be published, and missing, private or stale sources block approval.
+Captured approved Library/Elections source snapshots, public URLs, digests and revision provenance remain with the article through the fixed protected `/desktop/v1/{module}/items/{id}/source` provenance endpoint; this endpoint is specific to Library/Elections source provenance, not all sources or attachments. The public article uses the existing actual Communications URL; there is no new Library/Elections public page. Public attachments require review. Private notes never enter captured source content, and private source content cannot be published; missing, private or stale sources block approval. The separate Records permission is unchanged.
 
 ## Portal, email and delivery
 
@@ -27,7 +27,7 @@ The Records archive stores the actual published bytes, source references, attach
 
 ## Acceptance status
 
-Source-level checks passed for this development candidate, but installed Windows candidate acceptance remains pending. Acceptance must prove staff two-PC authoring, exact-revision approval, scheduling, app-closed host publication to the portal and controlled SMTP, correction and withdrawal, restart survival, and Records retrieval. Source tests are not installed acceptance. Do not describe this module as completed or released. The existing download at https://github.com/townlight/townlight/releases/latest explicitly does not include Communications.
+Source-level checks passed for this 0.2.1 development candidate, but installed Windows candidate acceptance remains pending; this is not an installed-acceptance claim. Acceptance must prove staff two-PC authoring, exact-revision approval, scheduling, app-closed host publication to the portal and controlled SMTP, correction and withdrawal, restart survival, and Records retrieval. Source tests are not installed acceptance. Do not describe this module as completed or released. The known-good Windows 1.10.0.1 baseline exists; the Library/Elections source extension is an unreleased Windows 1.11.0.1 candidate.
 
 ## Technical architecture
 

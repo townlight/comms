@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### 0.2.1 candidate
+
+- Added the source-kind contract only; Library/Elections source approval is a prerequisite, not a substitute for Communications approval.
+- Installed Windows candidate acceptance remains pending.
+- Known-good Windows 1.10.0.1 baseline remains separate; the Library/Elections source extension is an unreleased Windows 1.11.0.1 candidate.
+
 ### 0.2.0 candidate
 
 - Added editorial immutable revision approval and correction/withdrawal without reviving stale revisions.

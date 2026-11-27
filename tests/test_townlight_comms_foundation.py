@@ -108,7 +108,7 @@ def test_public_ui_route_is_accessible_and_honest() -> None:
     response = client.get("/townlight_comms")
 
     assert response.status_code == 200
-    assert "Townlight Communications v0.2.0" in response.text
+    assert "Townlight Communications v0.2.1" in response.text
     assert "Human approval required" in response.text
     assert "no campaign" in response.text.lower()
     assert "live LLM calls" in response.text

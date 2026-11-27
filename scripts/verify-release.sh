@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="0.2.0"
+VERSION="0.2.1"
 
 python_cmd() {
   local candidates=()
@@ -35,11 +35,11 @@ version = pyproject["project"]["version"]
 init = (root / "townlight_comms" / "__init__.py").read_text(encoding="utf-8")
 readme = (root / "README.md").read_text(encoding="utf-8")
 changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
-assert version == "0.2.0", version
-assert '__version__ = "0.2.0"' in init
-assert "Townlight Communications 0.2.0 development candidate" in readme
+assert version == "0.2.1", version
+assert '__version__ = "0.2.1"' in init
+assert "Townlight Communications 0.2.1 development candidate" in readme
 assert "## [Unreleased]" in changelog
-assert "### 0.2.0 candidate" in changelog
+assert "### 0.2.1 candidate" in changelog
 assert "townlight-core 1.3.0.dev2" in readme
 print("PASS: version surfaces synchronized")
 PY
