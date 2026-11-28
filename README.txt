@@ -1,13 +1,15 @@
-# Townlight Communications 0.2.1 development candidate
+# Townlight Communications 0.2.1
 
-Townlight Communications is the development candidate for the Townlight Windows staff Communications screen. The known-good Windows 1.10.0.1 baseline remains separate; the new Library/Elections source extension is an unreleased Windows 1.11.0.1 candidate, and Communications is not newly installed in every deployment. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2; package pin `townlight-core==1.3.0.dev2` (not `oldciviccore`).
+Townlight Communications 0.2.1 comes with Townlight for Windows 1.11.0.1 (https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.11.0.1). It adds exact approved source snapshots for Library and Elections. The distribution is `townlight-comms`, the import is `townlight_comms`, and the dependency is Townlight Core 1.3.0.dev2 (`townlight-core==1.3.0.dev2`). Follow the Townlight staff integration guide (https://github.com/townlight/townlight/blob/main/docs/windows-utilities-library-elections.md) for module handoffs, backup, and recovery.
 
 The canonical application is the Communications workspace in the Townlight Windows staff shell, using existing administrator, city-staff and clerk roles, plus a separate Records permission for archive access. The repository's standalone `main.py` remains a prototype for draft helpers. It is not a secured workflow server, and its commands are not production deployment instructions.
 
 ## Workflow
 
-- Draft and save content from selected Meetings, Code, Notice, 311 or Parks sources, plus candidate approved Library/Elections sources.
-- Run an Access check, review and approve one exact revision, then schedule website and email publication. Library/Elections source approval is a prerequisite, not a substitute for Communications approval. For Elections, Communications binds the approved public title, body, citation and version exactly; changing any of those requires a revised Elections approval plus a separate Communications approval. Normal Library editorial flow is unchanged. A revised source requires a ref refresh and a new Communications revision with separate approval; existing published v1 stays available until an approved correction. No new publisher is introduced.
+Library publication requires an approved Library source and the existing Communications editorial review. It also requires separate Communications approval of the exact revision. The Elections approval binds the title, the body, the official HTTPS citation and the source version. Any change requires new source and Communications approvals. Corrections keep the existing public URL and preserve prior Records archives.
+
+- Draft and save content from selected Meetings, Code, Notice, 311 or Parks sources, plus approved Library and Elections sources.
+- Run an Access check, review and approve one exact revision, then schedule website and email publication. Refresh a revised source reference and approve the new Communications revision. The existing public article remains available until the approved correction publishes.
 - Archive the published revision to Records BEFORE editing, correcting, or withdrawing it; Records access requires the separate Records permission.
 - Correct or withdraw published content without reviving stale revisions.
 - Capture approved Library/Elections source snapshots through the fixed protected `/desktop/v1/{module}/items/{id}/source` provenance endpoint; this endpoint is specific to Library/Elections source provenance, not all sources or attachments. The public article uses the existing actual Communications URL; there is no new Library/Elections public page. Private notes never enter captured source content, and private source content cannot be published. The separate Records permission is unchanged.
@@ -18,6 +20,10 @@ Website publication uses the host-configured portal credential and origin. Norma
 
 The Records archive stores actual published bytes and receipts and returns a real identifier. It requires the separate Records role permission.
 
-Status: source-level checks passed for this 0.2.1 development candidate, but installed Windows candidate acceptance is still pending; this is not an installed-acceptance claim. The known-good Windows 1.10.0.1 baseline exists, and the Library/Elections source extension is an unreleased Windows 1.11.0.1 candidate. Do not describe this module as completed or released.
+## Installed verification
+
+Signed fresh hosted Windows tests verified Library and Elections publication. The same tests verified that the corrected Elections article kept the article URL. On two physical PCs, the Library article reached the public portal, a matching email reached the controlled SMTP receiver, and the exact Records archive verified after the desktop closed. The full two-PC workflow, Elections upgrade approval, and the subsequent profile-preserving uninstall remained incomplete.
+
+Communications 0.2.0 remains documented in Townlight for Windows 1.10.0.1 (https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.10.0.1). Its release acceptance record (https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md) covers the 311, Communications, and Parks workflows, including a scheduled portal post, controlled SMTP delivery and Records retrieval after the desktop closed.
 
 License: code AGPL-3.0-only with the TownLight Public Institution Exception; documentation CC BY 4.0.
