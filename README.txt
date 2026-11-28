@@ -1,6 +1,6 @@
-# Townlight Communications 0.2.0 development candidate
+# Townlight Communications 0.2.0
 
-Townlight Communications is the development candidate for the Townlight Windows staff Communications screen. It is not included in the released Windows 1.9.3.2 suite. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
+Townlight Communications is the Townlight Windows staff Communications screen. Version 0.2.0 is included in the signed [Townlight for Windows 1.10.0.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.10.0.1) public beta. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
 
 The canonical application is the Communications workspace in the Townlight Windows staff shell, using existing administrator, city-staff and clerk roles, plus a separate Records permission for archive access. The repository's standalone `main.py` remains a prototype for draft helpers. It is not a secured workflow server, and its commands are not production deployment instructions.
 
@@ -18,6 +18,6 @@ Website publication uses the host-configured portal credential and origin. Norma
 
 The Records archive stores actual published bytes and receipts and returns a real identifier. It requires the separate Records role permission.
 
-Status: source-level checks passed for this development candidate, but installed Windows candidate acceptance is still pending. Do not describe this module as completed or released. The existing download at https://github.com/townlight/townlight/releases/latest explicitly does not include Communications.
+Status: Communications 0.2.0 ships in the Windows 1.10.0.1 public beta. In the [release acceptance record](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md), the staff workflow completed eight observed milestones across 311, Communications and Parks. After the desktop closed, the scheduled Communications article appeared on the public portal and its email reached the controlled SMTP receiver. Records returned the same article ID, revision 4 and published content hash. The email check used a test receiver.
 
 License: code AGPL-3.0-only with the TownLight Public Institution Exception; documentation CC BY 4.0.

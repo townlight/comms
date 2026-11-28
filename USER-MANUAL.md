@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-Townlight Communications 0.2.0 is a development candidate for the Townlight Windows staff Communications screen. It is not part of the released Windows 1.9.3.2 suite. Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
+Townlight Communications 0.2.0 is the Townlight Windows staff Communications screen. It is included in the signed Townlight for Windows 1.10.0.1 public beta (https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.10.0.1). Distribution name: `townlight-comms`; import name: `townlight_comms`; current dependency: Townlight Core 1.3.0.dev2 (`townlight-core 1.3.0.dev2`).
 
 The canonical application is the Communications workspace in the Townlight Windows staff shell with existing roles: local-admin and city-staff have all active profile-module capabilities plus Records; clerk has Meetings, Notice, Access, 311, Communications and Parks workflow access, but not Records, Code or Data; records-staff has Records only; code-staff has Code only. Aggregate Data approval uses local-admin. Records archive handoff and retrieval use the separate Records permission. The standalone `main.py` in this repository remains a prototype for draft helpers; it is not a secured workflow server or production deployment procedure.
 
@@ -27,7 +27,7 @@ The Records archive stores the actual published bytes, source references, attach
 
 ## Acceptance status
 
-Source-level checks passed for this development candidate, but installed Windows candidate acceptance remains pending. Acceptance must prove staff two-PC authoring, exact-revision approval, scheduling, app-closed host publication to the portal and controlled SMTP, correction and withdrawal, restart survival, and Records retrieval. Source tests are not installed acceptance. Do not describe this module as completed or released. The existing download at https://github.com/townlight/townlight/releases/latest explicitly does not include Communications.
+Communications 0.2.0 ships in the Windows 1.10.0.1 public beta. The release acceptance record (https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md) lists what was tested. The staff workflow completed eight observed milestones across 311, Communications and Parks. After the desktop closed, the scheduled Communications article appeared on the public portal and its email reached the controlled SMTP receiver. Records returned the same article ID, revision 4 and published content hash. The email check used a test receiver.
 
 ## Technical architecture
 
