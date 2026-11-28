@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "townlight-comms"
-version = "0.2.0"
+version = "0.2.1"
 description = "Townlight Communications runtime foundation for source-backed public explainers, meeting summaries, newsletters, FAQs, and audience variants."
 readme = "README.md"
 requires-python = ">=3.11"

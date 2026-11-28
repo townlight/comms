@@ -1,19 +1,19 @@
 # Changelog
 
-All notable changes to CivicComms will be documented in this file.
+All notable changes to Townlight Communications are documented here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+## [0.2.1] - Townlight Windows 1.11.0.1
 
-## [Unreleased]
+- Added approved Library and Elections source snapshots to the existing Communications workflow. Each source requires its own approval before the separate Communications review and approval.
+- Bound Elections publication to the approved title, body, official citation and source version. A correction uses the existing article URL and preserves immutable Records archives for prior revisions.
+- See [Townlight for Windows 1.11.0.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.11.0.1) for the signed installer and verification coverage.
 
-### 0.2.0 candidate
+## [0.2.0] - Townlight Windows 1.10.0.1
 
-- Added editorial immutable revision approval and correction/withdrawal without reviving stale revisions.
-- Added approved source snapshot and public attachment capture.
-- Added scheduled website and email publication through the host service.
-- Added subscriber confirmation, preference management, and unsubscribe support.
-- Added Records archive storage for published bytes and receipts behind the separate Records permission.
-- Not included in the released Windows 1.9.3.2 suite; installed candidate acceptance is still pending.
+- Added immutable revision approval, ordered correction and withdrawal, and approved source snapshot and attachment capture.
+- Added scheduled website and email publication through the host, plus subscriber confirmation, preferences, and unsubscribe.
+- Archived published bytes and receipts in Records under the separate Records permission.
+- See the [signed Windows release](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.10.0.1) and its [acceptance record](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md).
 
 ## [0.1.1] - 2026-04-28
 

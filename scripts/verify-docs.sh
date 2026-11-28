@@ -35,7 +35,7 @@ if grep -RInE 'system-of-record integrations are online|autonomous publication i
   exit 1
 fi
 
-for token in "Townlight Communications" "candidate" "Windows" "0.2.0" "townlight-comms" "townlight_comms" "Core" "1.3.0.dev2"; do
+for token in "Townlight Communications" "Windows 1.11.0.1" "Windows 1.10.0.1" "0.2.1" "townlight-comms" "townlight_comms" "Core" "1.3.0.dev2"; do
   if ! grep -RIn "$token" README.md USER-MANUAL.md docs/index.html CHANGELOG.md >/dev/null; then
     echo "FAIL: expected token missing from current-facing docs: $token" >&2
     exit 1
