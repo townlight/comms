@@ -37,7 +37,8 @@ readme = (root / "README.md").read_text(encoding="utf-8")
 changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
 assert version == "0.2.0", version
 assert '__version__ = "0.2.0"' in init
-assert "Townlight Communications 0.2.0 development candidate" in readme
+assert readme.splitlines()[0] == "# Townlight Communications 0.2.0"
+assert "Townlight for Windows 1.10.0.1" in readme
 assert "## [Unreleased]" in changelog
 assert "### 0.2.0 candidate" in changelog
 assert "townlight-core 1.3.0.dev2" in readme
